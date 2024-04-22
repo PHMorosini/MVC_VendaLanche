@@ -56,5 +56,16 @@ namespace MVC_VendaLanche.Controllers
         {
             return RedirectToAction("List", "Lanche");
         }
+
+        public IActionResult MenosUmQuantidade(int lancheId)
+        {
+            var lancheSelecionado = _lancheRepository.Lanches.FirstOrDefault(p => p.LancheId == lancheId);
+
+            
+            _carrinhoCompra.RemoverUmaQuantidadeCarrinho(lancheSelecionado);
+            return RedirectToAction("ReturnListLanche");
+
+
+        }
     }
 }

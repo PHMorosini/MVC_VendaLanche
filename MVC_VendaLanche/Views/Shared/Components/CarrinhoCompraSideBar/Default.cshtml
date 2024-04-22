@@ -4,6 +4,17 @@
 {
      @foreach (var iten in Model.CarrinhoCompra.CarrinhoCompraItens)
     {
-        <span><img src="@Model.CarrinhoCompra.CarrinhoCompraItens.Lanche."></img></span>
+        <div class="col-8 align-iten-end">
+        <a asp-controller="CarrinhoCompra" asp-action="Index" class="text-black">              
+        <span><img src="@iten.Lanche.ImagemUrl" class="img card-img"/></span>
+                <p> Quantidade: @iten.Quantidade R$ @(iten.Lanche.Preco * iten.Quantidade) </p>
+                <div class="btn-group">
+                    <a class="btn btn-primary" id="cartButton-@iten.Lanche.LancheId" asp-controller="CarrinhoCompra" asp-action="AdicionarItemNoCarrinhoCompra" asp-route-Lancheid="@iten.Lanche.LancheId">Adicionar</a>
+                    <a class="btn btn-secondary" asp-controller="CarrinhoCompra" asp-action="MenosUmQuantidade" asp-route-Lancheid="@iten.Lanche.LancheId" >-</a>
+                </div>
+        </a>
+           
+        </div>
+        
     }
 }
