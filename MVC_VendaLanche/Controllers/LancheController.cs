@@ -1,0 +1,67 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using MVC_VendaLanche.Models.Entities;
+using MVC_VendaLanche.Repositories.Interfaces;
+using MVC_VendaLanche.ViewModels;
+
+namespace MVC_VendaLanche.Controllers
+{
+    public class LancheController : Controller
+    {
+        private readonly ILancheRepository _lancheRepository;
+
+        public LancheController(ILancheRepository lancheRepository)
+        {
+            _lancheRepository = lancheRepository;
+        }
+
+        public IActionResult List(string categoria)
+        {
+            IEnumerable<Lanche> lanches;
+            string categoriaAtual = string.Empty;
+
+            if (string.IsNullOrEmpty(categoria))
+            {
+                lanches = _lancheRepository.Lanches.OrderBy(l => l.LancheId);
+                categoriaAtual = "Todos os lanches";
+            }
+            else
+            {
+                //if (string.Equals("Normal", categoria, StringComparison.OrdinalIgnoreCase))
+                //{
+                //    lanches = _lancheRepository.Lanches.Where(l => l.Categoria.CategoriaNome == "Normal").OrderBy(l => l.Nome);
+                //}
+                //else
+                //{
+                //    lanches = _lancheRepository.Lanches.Where(l => l.Categoria.CategoriaNome == "Natural")
+                //                                       .OrderBy(l => l.Nome);
+                //}
+                //categoriaAtual = categoria;
+
+                lanches = _lancheRepository.Lanches
+                            .Where(l => l.Categoria.CategoriaNome.Equals(categoria))
+                            .OrderBy(c => c.Nome);
+
+                categoriaAtual = categoria;
+            }
+
+
+            //var lanches = _lancheRepository.Lanches;
+            //return View(lanches);
+            var lanchesListViewModel = new LancheListViewModel
+            {
+                Lanches = lanches,
+                CategoriaAtual = categoriaAtual
+            };
+            //lanchesListViewModel.Lanches = _lancheRepository.Lanches;
+            //lanchesListViewModel.CategoriaAtual = "Categoria Atual";
+
+            return View(lanchesListViewModel);
+
+        }
+        public IActionResult Details(int lancheid)
+        {
+            var lanche = _lancheRepository.Lanches.FirstOrDefault(l => l.LancheId == lancheid);
+            return View(lanche);
+        }
+    }
+}

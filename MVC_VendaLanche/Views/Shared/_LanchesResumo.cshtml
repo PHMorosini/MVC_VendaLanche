@@ -1,0 +1,33 @@
+﻿@model Lanche
+
+<div class="row">
+    <div class="col-12">
+        <p><img src="@Model.ImagemUrl" class="img-fluid"></p>
+        <h3>Preço : @Model.Preco.ToString("c")</h3>
+        <a asp-controller="Lanche" asp-action="Details" asp-route-lancheid="@Model.LancheId">@Model.Nome</a>
+        <p>@Model.DescricaoCurta</p>
+        <div>
+            <p class="button">
+                <a class="btn btn-primary" id="cartButton-@Model.LancheId" asp-controller="CarrinhoCompra" asp-action="AdicionarItemNoCarrinhoCompra" asp-route-Lancheid="@Model.LancheId">Adicionar</a>
+                <a class="card-body" id="counter-@Model.LancheId" data-lanche-id="@Model.LancheId">1</a>
+                <button class="btn btn-secondary" onclick="addOne('@Model.LancheId')">+</button>
+                <button class="btn btn-danger" onclick="removeOne('@Model.LancheId')">-</button>
+            </p>
+        </div>
+    </div>
+
+</div>
+<script src="~/js/site.js"></script>
+
+
+
+
+
+@*    <div class="col-sm-4 col-md-4 col-lg-4">
+      <p><img src="@Model.ImagemUrl" class="img-fluid"></p>
+      <h3>Preço : @Model.Preco.ToString("c")</h3>
+      <h4>@Model.Nome</h4>
+      <p>@Model.DescricaoCurta</p>
+   </div>
+
+ *@

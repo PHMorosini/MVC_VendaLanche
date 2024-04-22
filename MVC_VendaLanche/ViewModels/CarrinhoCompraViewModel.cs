@@ -1,0 +1,11 @@
+﻿using MVC_VendaLanche.Models.Entities;
+
+namespace MVC_VendaLanche.ViewModels
+{
+    public class CarrinhoCompraViewModel
+    {
+        public CarrinhoCompra CarrinhoCompra { get; set; }
+        public decimal CarrinhoCompraTotal {  get; set; }
+    }
+
+}

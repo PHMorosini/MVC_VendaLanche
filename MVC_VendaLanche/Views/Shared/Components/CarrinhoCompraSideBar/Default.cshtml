@@ -1,0 +1,9 @@
+﻿@model CarrinhoCompraViewModel
+
+@if (Model.CarrinhoCompra.CarrinhoCompraItens.Count > 0)
+{
+     @foreach (var iten in Model.CarrinhoCompra.CarrinhoCompraItens)
+    {
+        <span><img src="@Model.CarrinhoCompra.CarrinhoCompraItens.Lanche."></img></span>
+    }
+}
