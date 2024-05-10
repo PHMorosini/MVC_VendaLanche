@@ -10,8 +10,6 @@ namespace MVC_VendaLanche.Controllers
     {
        
         private readonly ILancheRepository _lancheRepository;
-
-
         
 
         public HomeController(ILancheRepository lancheRepository)
@@ -38,5 +36,8 @@ namespace MVC_VendaLanche.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+      
+
     }
 }

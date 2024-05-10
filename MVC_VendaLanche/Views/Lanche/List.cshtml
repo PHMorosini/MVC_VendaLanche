@@ -1,27 +1,33 @@
 ﻿@model LancheListViewModel
-<div class="container">
+<div class="container" >
     <div class="row">
         <!-- Barra lateral -->
-        <div class="col-md-2">
-            <div class="sidebar">
+        <div class="col-md-2 border border-black border-2">
+            <div class="sidebar sidebar-rigth">
                 <h2>Filtros</h2>
+                <form class="navbar-form navbar-rigth" asp-controller="Lanche" asp-action="Search" method="get">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Nome do produto" name="searchString" value="@ViewData["searchString"]">
+                    </div>
+                </form>
+                <br>
                 <!-- Conteúdo da barra lateral -->
                 @await Component.InvokeAsync("CategoriaMenu")
             </div>
         </div>
 
         <!-- Conteúdo principal -->
-        <div class="row col-md-8 ">
+        <div class="row col-md-8 " >
             <div class="main-content">
                 <Div>
                     <h2>@Model.CategoriaAtual</h2>
                 </Div>
                 <!-- Loop para exibir os lanches -->
                 <div class="container">
-                    <div class="row">
+                    <div class="row" >
                         @foreach (var lanche in Model.Lanches)
                         {
-                            <div class="col-4">
+                            <div class="col-4 ">
                                 <partial name="_LanchesResumo" for="@lanche" />
                             </div>
 
@@ -30,12 +36,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
-            <div class="sidebar align-content-end">
-                <h2>No carrinho</h2>
+        <div class="col-md-2 ">
+           
                 <!-- Conteúdo da barra lateral -->
                 @await Component.InvokeAsync("CarrinhoCompraSideBar")
-            </div>
         </div>
     </div>
 </div>

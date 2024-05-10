@@ -12,19 +12,23 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    Ratuera lanxis
+                    <img  class ="img-fluid" src="~/Images/Vector.png"/>Lothric Burguer
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse text-end">
-                    @await Component.InvokeAsync("CarrinhoCompraResumo")
-                    <a class="nav-link text-light" asp-area="" asp-controller="Lanche" asp-action="List">Lanches</a>
-                    <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    <a class="nav-link text-light" asp-area="" asp-controller="Contato" asp-action="Index">Contato</a>
+                
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse text-md-center">
+                    <a class="nav-link text-light text-md-center" asp-area="" asp-controller="Contato" asp-action="Index">Contato</a>
+                    <a class="nav-link text-light text-md-center" asp-area="" asp-controller="Lanche" asp-action="List">Cardapio</a>
                     
                 </div>
+                <div class ="text-md-end" style="width:500px">
+                    @await Component.InvokeAsync("CarrinhoCompraResumo")
+                </div>
+
+
             </div>
         </nav>
     </header>
@@ -36,7 +40,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; @DateTime.Now.Year - Rautera Lanxis
+            &copy; @DateTime.Now.Year - Lothric Burguer
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

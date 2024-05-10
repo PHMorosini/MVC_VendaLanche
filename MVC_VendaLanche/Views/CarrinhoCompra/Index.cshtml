@@ -16,7 +16,7 @@
             <thead>
                 <tr>
                     <th>Quantidade</th>
-                    <th>Lanche</th>
+                    <th>Produto</th>
                     <th class="text-right">Preço</th>
                     <th class="text-right">Subtotal</th>
                     <th></th>
@@ -36,7 +36,7 @@
                         </td>
 
                         <td class="text-center">
-                            <a asp-controller="CarrinhoCompra" asp-action="RemoverItemDoCarrinhoCompra"
+                            <a asp-controller="CarrinhoCompra" asp-action="RemoverItemNoCarrinhoCompra"
                                asp-route-lancheId="@item.Lanche.LancheId">
                                 <img src="~/images/delete.png" width="10px" height="10px" />
                             </a>
@@ -56,12 +56,27 @@
 
 
         <div class="text-right">
-            <div class="btn-group">
-                <a class="btn btn-success" asp-controller="Pedido" asp-action="Checkout">Encerrar Pedido</a>
-                &nbsp;&nbsp;&nbsp;
-                <a class="btn btn-primary" asp-controller="Lanche" asp-action="List">Continuar Comprando</a>
+            <div>
+                @if (Model.CarrinhoCompra.CarrinhoCompraItens.Count > 0) {
+                    <a class="btn btn-success" asp-controller="Pedido" asp-action="Checkout">Encerrar Pedido</a>
+                    <a class="btn btn-primary" asp-controller="Lanche" asp-action="List">Continuar Comprando</a>
+                }
+                else{
+                    <a class="btn btn-success" onclick="mostrarMensagem()">Encerrar Pedido</a>
+                    <a class="btn btn-primary" asp-controller="Lanche" asp-action="List">Continuar Comprando</a>
+                    <br>
+                    <p id="mensagem" class="text-danger"></p>
+                }
+                
             </div>
         </div>
         <br />
     </div>
 </div>
+
+
+<script>
+    function mostrarMensagem() {
+        document.getElementById("mensagem").innerHTML = "O carrinho não possui itens, favor adicionar antes de prosseguir";
+    }
+</script>
